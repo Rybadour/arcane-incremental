@@ -6,3 +6,8 @@ export interface Position {
 export interface Wisp {
   pos: Position;
 }
+
+export interface Stat {
+  name: string;
+  amount: number;
+}

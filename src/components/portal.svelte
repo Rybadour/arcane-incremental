@@ -2,16 +2,18 @@
 	import { wisps } from '../stores/portal';
 </script>
 
-<h2>Portal</h2>
+<div>
+  <h2 class="text-xl text-center mb-4">Portal</h2>
 
-<svg width="1000" height="1000">
-  <circle cx="300" cy="300" r="200" fill="#FFF" fill-opacity="0.2"></circle>
-  <svg x="300" y="300" class="no-clip">
-  {#each $wisps as wisp}
-    <circle cx={wisp.pos.x} cy={wisp.pos.y} r="5" fill="#D88"></circle>
-  {/each}
+  <svg width="600" height="600">
+    <circle cx="200" cy="200" r="200" fill="#FFF" fill-opacity="0.2"></circle>
+    <svg x="200" y="200" class="no-clip">
+    {#each $wisps as wisp}
+      <circle cx={wisp.pos.x} cy={wisp.pos.y} r="5" fill="#D88"></circle>
+    {/each}
+    </svg>
   </svg>
-</svg>
+</div>
 
 <style>
   .no-clip {
