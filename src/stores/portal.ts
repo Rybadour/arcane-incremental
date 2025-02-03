@@ -4,6 +4,8 @@ import { type Wisp } from '$lib/types'
 
 
 const SPAWN_DELAY = 1000;
+const PORTAL_RADIUS = 200;
+const SPAWN_RADIUS_MARGIN = 20;
 
 export const wisps = writable<Wisp[]>([]);
 
@@ -22,10 +24,16 @@ export function onUpdate(delta: number) {
 }
 
 function generateWisp(): Wisp {
+  // Apparently this just fucking works!? https://stackoverflow.com/questions/5837572/generate-a-random-point-within-a-circle-uniformly
+  const SPAWN_RADIUS = PORTAL_RADIUS - SPAWN_RADIUS_MARGIN;
+
+  const rad = SPAWN_RADIUS * Math.sqrt(Math.random());
+  const theta = Math.random() * 2 * Math.PI;
+
   return {
     pos: {
-      x: Math.random() * 100,
-      y: Math.random() * 100,
+      x: rad * Math.cos(theta),
+      y: rad * Math.sin(theta)
     }
-  }
+  };
 }
