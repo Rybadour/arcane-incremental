@@ -30,7 +30,7 @@
   <h1 class="text-center text-xl mb-4">Arcane Incremental</h1>
 
   <div class="flex justify-center gap-6">
-    {#each $stats as stat}
+    {#each Object.values($stats) as stat}
     <div class="flex gap-2 rounded-2xl bg-slate-500 p-2">
       <div class="text-slate-900">{stat.name}</div>
       <div class="text-slate-900 text-md font-bold">{stat.amount}</div>
