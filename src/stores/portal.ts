@@ -1,7 +1,9 @@
-import { writable } from 'svelte/store'
+import { writable } from 'svelte/store';
 
-import { ALL_WISP_TYPES, type StatType, type Wisp, type WispType } from '$lib/types'
+import { type StatType } from '$lib/types';
+import { ALL_WISP_TYPES, type Wisp, type WispType } from '$lib/wisp-types';
 import { gainStat } from './global';
+import { getRandomFromArray } from '$lib/utils';
 
 
 const SPAWN_DELAY = 1000;
@@ -32,7 +34,7 @@ function generateWisp(): Wisp {
   const theta = Math.random() * 2 * Math.PI;
 
   return {
-    type: ALL_WISP_TYPES[Math.floor(Math.random() * ALL_WISP_TYPES.length)],
+    type: getRandomFromArray(ALL_WISP_TYPES),
     pos: {
       x: rad * Math.cos(theta),
       y: rad * Math.sin(theta)

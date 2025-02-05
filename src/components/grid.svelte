@@ -1,5 +1,6 @@
 <script>
 	import { GRID_SLOTS } from "../stores/grid";
+	import { runes } from "../stores/runes";
 
 </script>
 
@@ -10,6 +11,18 @@
     {#each GRID_SLOTS as slot}
       <div class="rounded-md border-2 border-white h-[60px] w-[60px]"></div>
     {/each}
+  </div>
+
+  <div>
+    <h3>Runes</h3>
+
+    <div>
+      {#each $runes as rune}
+      <div>
+        <b>{rune.name}</b>
+      </div>
+      {/each}
+    </div>
   </div>
 </div>
 

@@ -1,5 +1,5 @@
 <script>
-	import { getWispColor } from '$lib/types';
+	import { getWispColor } from '$lib/wisp-types';
 	import { killWisp, wisps } from '../stores/portal';
 </script>
 
