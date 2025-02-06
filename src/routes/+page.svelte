@@ -3,7 +3,7 @@
 
   import Portal from '../components/portal.svelte';
 	import { onUpdate } from "../stores/portal";
-	import Grid from "../components/grid.svelte";
+	import Grid from "../components/runes.svelte";
 	import Forge from "../components/forge.svelte";
 	import { stats } from "../stores/global";
 

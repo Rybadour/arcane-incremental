@@ -6,6 +6,7 @@ export type EssenceFlavor = 'fire' | 'water' | 'air';
 export const ALL_RUNE_FLAVORS: EssenceFlavor[] = ['fire', 'water', 'air'];
 
 export interface Rune {
+  id: number,
   name: string,
   type: RuneType,
   flavor: EssenceFlavor,
