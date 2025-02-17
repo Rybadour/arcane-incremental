@@ -21,3 +21,10 @@ export function craftRune() {
     return runes;
   })
 }
+
+export function generateExactRune(runeProps: Omit<Rune, 'id'>): Rune {
+  return {
+    id: lastRuneId++,
+    ...runeProps
+  };
+}

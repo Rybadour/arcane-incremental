@@ -1,10 +1,12 @@
 <script>
 	import { getWispColor } from '$lib/wisp-types';
-	import { killWisp, wisps } from '../stores/portal';
+	import { killWisp, spawnDelay, wisps } from '../stores/portal';
 </script>
 
 <div>
   <h2 class="text-xl text-center mb-4">Portal</h2>
+
+  <p>{(1000 / $spawnDelay).toFixed(2)} wisps/sec</p>
 
   <svg width="600" height="600">
     <circle cx="200" cy="200" r="200" fill="#FFF" fill-opacity="0.2"></circle>

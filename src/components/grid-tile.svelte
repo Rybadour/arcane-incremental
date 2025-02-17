@@ -4,11 +4,26 @@
 
 	import RuneTile from './rune-tile.svelte';
 	import type { Rune } from '$lib/rune-types';
+	import { placeRune } from '../stores/grid';
+
+	export let rune: Rune | null;
+	export let row: number;
+	export let col: number;
 	
-	let items: (Rune | Item)[] = [];
+	let items: (Rune | Item)[] = rune ? [rune] : [];
+
+	function handleConsider(e: CustomEvent<DndEvent<Rune | Item>>) {
+		items = e.detail.items;
+	}
 	
 	function handleDrop(e: CustomEvent<DndEvent<Rune | Item>>) {
-		items = e.detail.items;
+		const newItems = e.detail.items;
+		for (let item of newItems) {
+			if (isRune(item)) {
+				placeRune(item, row, col);
+				return;
+			}
+		}
 	}
 	
 	$: options = {
@@ -32,7 +47,7 @@
 <div
   class={"rounded-md bg-slate-600 w-[60px] h-[60px]" + (isEmpty() ? "bg-slate-700" : "")}
   use:dndzone={options}
-  on:consider={handleDrop}
+  on:consider={handleConsider}
   on:finalize={handleDrop}
 >
 	{#each items as tile(tile.id)}

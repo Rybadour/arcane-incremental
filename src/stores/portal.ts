@@ -1,26 +1,32 @@
-import { writable } from 'svelte/store';
+import { derived, writable } from 'svelte/store';
 
 import { type StatType } from '$lib/types';
 import { ALL_WISP_TYPES, type Wisp, type WispType } from '$lib/wisp-types';
 import { gainStat } from './global';
 import { getRandomFromArray } from '$lib/utils';
+import { numAirRunes } from './grid';
 
 
-const SPAWN_DELAY = 1000;
+const BASE_SPAWN_DELAY = 10000;
+const SPAWN_DELAY_INCREASE = 1000;
 const PORTAL_RADIUS = 200;
 const SPAWN_RADIUS_MARGIN = 20;
 
 export const wisps = writable<Wisp[]>([]);
 
+export const spawnDelay = derived(numAirRunes, (numAirRunes) => {
+  return BASE_SPAWN_DELAY - numAirRunes * SPAWN_DELAY_INCREASE;
+});
+
 export let lastSpawnTime = 0;
 
-export function onUpdate(delta: number) {
+export function onUpdate(delta: number, spawnDelay: number) {
   if (lastSpawnTime <= 0) {
     wisps.update(w => {
       return [...w, generateWisp()];
     });
 
-    lastSpawnTime = SPAWN_DELAY;
+    lastSpawnTime = spawnDelay;
   } else {
     lastSpawnTime -= delta;
   }

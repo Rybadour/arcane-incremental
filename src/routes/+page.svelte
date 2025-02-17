@@ -2,7 +2,7 @@
   import { onMount } from "svelte";
 
   import Portal from '../components/portal.svelte';
-	import { onUpdate } from "../stores/portal";
+	import { onUpdate, spawnDelay } from "../stores/portal";
 	import Grid from "../components/runes.svelte";
 	import Forge from "../components/forge.svelte";
 	import { stats } from "../stores/global";
@@ -12,7 +12,7 @@
     let lastTime = 0;
 
     const loop = (time: number) => {
-      onUpdate(time - lastTime);
+      onUpdate(time - lastTime, $spawnDelay);
       lastTime = time;
 
       frame = requestAnimationFrame(loop);
